@@ -1,6 +1,7 @@
 """Room-local adapters for character cards, graph memory and goal arbitration."""
 import json
 import re
+from pathlib import Path
 from uuid import uuid4
 
 from werkzeug.exceptions import BadRequest
@@ -37,6 +38,8 @@ def initialize(db):
         db.execute("ALTER TABLE todos ADD COLUMN author TEXT NOT NULL DEFAULT '我'")
     db.execute("INSERT OR IGNORE INTO roles VALUES(?,?)",(DEFAULT_CARD["id"],json.dumps(DEFAULT_CARD,ensure_ascii=False)))
     db.execute("INSERT OR IGNORE INTO settings VALUES('role',?)",(DEFAULT_CARD["id"],))
+    for imported in json.loads(Path(__file__).with_name("companion-cards.json").read_text(encoding="utf-8")):
+        db.execute("INSERT OR IGNORE INTO roles VALUES(?,?)",(imported["id"],json.dumps(imported,ensure_ascii=False)))
     db.commit()
 
 
@@ -77,9 +80,15 @@ def recall(db,query,limit=6):
     return sorted(rows,key=lambda r:(len(keys & terms(r["entity"]+r["body"])), r["source"]!="经历",r["id"]),reverse=True)[:limit]
 
 
-def context(db,query):
+def context(db,query,*,group=False):
     role=card(db)
     fields=[role.get(k,"") for k in ("system_prompt","name","description","personality","style","rules","behavior","scenario","mes_example","post_history_instructions")]
+    if group:
+        # User-linked memories, to-dos and intentions belong to the owner's private conversation.
+        current=db.execute("SELECT place FROM intentions WHERE state='active'").fetchone()
+        activity=ACTIVITIES.get(current["place"]) if current else None
+        public_activity=f"\n你正在{activity[0]}{activity[1]}。" if activity else ""
+        return "\n".join(filter(None,fields))+public_activity+"\n你正在微信群里聊天。只根据当前群的对话接话，用一到三句自然的中文回应。"
     current=db.execute("SELECT title,reason FROM intentions WHERE state='active'").fetchone()
     memory=[r["entity"]+" · "+r["body"] for r in recall(db,query)]
     return "\n".join(filter(None,fields))+ "\n以下是小窝的观察记录，作为背景资料：\n"+"\n".join(memory)+(

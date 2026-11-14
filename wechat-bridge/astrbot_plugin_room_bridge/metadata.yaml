@@ -1,0 +1,5 @@
+name: astrbot_plugin_room_bridge
+display_name: 大肥鱼小窝
+desc: 将指定微信聊天交给小窝的会话服务。
+version: v0.1.0
+author: DaFeiYu

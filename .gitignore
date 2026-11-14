@@ -8,3 +8,7 @@ __pycache__/
 *.sqlite3*
 *.pem
 *.key
+settings.json
+state.json
+room-bridge.json
+*.wav
