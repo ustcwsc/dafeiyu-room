@@ -1,0 +1,7 @@
+A · 蓝发小女仆大眼睛版。正面使用用户指定的模板示例 example-front-idle.png，斜侧面和侧面依照同一睁眼表情补绘。来源及署名见本目录 CREDITS.md。
+B · 短发居家版。以 A 为参考，用图像生成重新绘制服装、发型与配饰。沿用 CC BY-NC-SA 4.0。
+https://github.com/PC2005-cloud/dsh-pet
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+三维公寓使用 sh2234113/feiyu-room-template 的 world.js。书桌日记、天气瓶、待办和蓝皮故事书为此预览的改动。
+三维角色使用经确认的正面图作为纹理和轮廓依据。侧面、斜向与背面纹理由原图补绘，女仆背面另参考模板示例。网格与多视图纹理沿用 CC BY-NC-SA 4.0。
+两套 3D 角色使用独立躯干与左右肩、肘、腕、髋、膝、踝链。每套 13 个闭合网格，笔、书和园艺道具随手掌定位。新增四肢贴图采样自对应角色的确认稿。

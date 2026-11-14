@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大肥鱼的家</title><link rel="stylesheet" href="/static/style.css">
+</head><body>
+<header><div class="brand"><span class="portrait" aria-hidden="true"></span><h1>大肥鱼的家</h1></div>
+<nav aria-label="小屋工具"><select id="costume" aria-label="角色形象"><option value="A">蓝发小女仆</option><option value="B">短发居家版</option></select><button data-panel="role">角色卡</button><button data-panel="provider" id="providerBtn">模型设置</button></nav></header>
+<main>
+<section id="stage" aria-label="可旋转的三维公寓"><canvas id="scene" aria-label="公寓场景，拖动旋转，滚轮缩放"></canvas>
+<div class="views" aria-label="相机位置"><button data-view="follow" aria-pressed="true">跟随</button><button data-view="desk">书桌旁</button><button data-view="living">客厅</button><button data-view="garden">菜园</button><button data-view="street">海风街</button><button data-view="all">俯瞰</button></div>
+<div id="marks"></div><p id="load" role="status">正在打开公寓…</p>
+<div class="stagefoot"><span id="place" role="status">在卧室休息</span><div class="scene-tools"><button id="garden-entry" hidden>菜畦</button><button id="invite" hidden>叫她过来</button><button id="labels" aria-pressed="true">物件标记　开</button></div></div>
+</section>
+<section class="dock" aria-label="日常互动"><div class="docklead"><small id="day"></small><button class="mind-link" data-panel="mind" id="intention">她的心愿</button></div><div class="tools">
+<button data-panel="diary">日记本</button><button data-panel="mood">天气瓶</button><button data-panel="todo">待办板</button><button data-panel="memory">记忆</button><button data-panel="story">故事书</button><button class="talk" data-panel="chat">和她聊聊</button></div></section>
+</main>
+<dialog id="plot-panel"><div class="sheethead"><h2 id="plot-title">菜畦</h2><button id="plot-close" aria-label="关闭">×</button></div><div id="plots" class="row" aria-label="选择菜畦"></div><div id="garden-actions"></div><p id="plot-result" role="status"></p></dialog>
+<dialog id="sheet" aria-labelledby="panelTitle"><div class="sheethead"><h2 id="panelTitle"></h2><button id="closePanel" aria-label="关闭">×</button></div><div id="contents"></div><p id="notice" role="status"></p></dialog>
+<footer>角色素材来自 <a href="https://github.com/PC2005-cloud/dsh-pet">dsh-pet</a>，按 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 使用和改绘。</footer>
+<script type="module" src="/static/house.js"></script><script type="module" src="/static/room-ui.js"></script>
+</body></html>

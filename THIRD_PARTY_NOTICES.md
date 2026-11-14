@@ -1,0 +1,67 @@
+# 第三方素材与依赖
+
+## 代码
+
+本项目代码：MIT，见 `LICENSE`。
+
+## 2D 立绘 / 动画
+
+- 来源：**dsh-pet** <https://github.com/PC2005-cloud/dsh-pet>
+- 内容：`public/room/assets/pet/*.webm`、`*.png`、`public/room/assets/sound/click-duck.wav`
+- 授权：**CC BY-NC-SA 4.0**
+- 约束：署名、非商业、相同方式共享
+- 详细署名：`public/room/assets/pet/CREDITS.md`
+
+## 作者提供的 3D 模型
+
+- 文件：`public/room/assets/models/da-feiyu.opt.glb`
+- 来源：项目作者提供（Tripo 生成后减面/优化）
+- 授权：版权归作者；随本模板用于个人、非商业展示
+- 限制：不可单独提取、转售、商用或批量再分发；商用/二次创作需作者书面许可
+- 文件：`public/room/assets/models/da-feiyu.glb`（58.9 MB，原始工程）和 `da-feiyu.opt.glb`（6.7 MB，运行时）
+
+## Three.js
+
+- `public/room/vendor/three.module.js`
+- 授权：MIT
+- 许可证文本：`public/room/vendor/LICENSE-three.txt`
+
+## 运行依赖
+
+见 `package.json`：
+
+- `@deepseek-ai/dsh-host-apiproxy`
+- `@deepseek-ai/schemastery`
+- `@modelcontextprotocol/sdk`
+- `@snowluma/mcp`
+- `@snowluma/sdk`
+- `js-yaml`
+- `zod`
+
+各自遵循其上游许可证。`@snowluma/*` 是第三方 SDK，本仓库不重新授权它。
+
+## SnowLuma
+
+SnowLuma 是独立软件，**不在本仓库内，也不随本仓库分发**。  
+使用前请自行确认其许可证和 QQ 平台规则。
+
+## 未包含
+
+- 作者角色卡、语音、照片、聊天记录；
+- 任何 API Key、Cookie、token。
+
+
+## 暴喵AI管家安装包
+
+- 目录：`tools/`
+- 文件：`AI-Manager-v1.16.1-Windows.msi`、`AI-Manager-v1.16.1-macOS.dmg`
+- 版权：暴喵AI
+- 分发授权：已获暴喵AI官方授权，由项目发布者随模板分发
+- 许可：适用暴喵AI自己的许可与隐私条款，不属于本项目 MIT 许可
+- 说明：第三方安装包，不是本项目代码组成部分
+
+## 角色、记忆与目标
+
+- 角色卡导入和导出直接使用 ZelinW1/dsh-cosplay 的 store.js（MIT）。角色在本机 SQLite 保存，模型读取当前卡中的人设、习惯和对话示例。https://github.com/ZelinW1/dsh-cosplay
+- 记忆适配 modelcontextprotocol/servers 的 memory 实体、关系与观察结构。本项目使用独立编写的 SQLite 后端，支持记住、检索、遗忘与图谱导出，不启动 MCP 守护进程。https://github.com/modelcontextprotocol/servers/tree/main/src/memory
+- 心愿选择在服务端移植 Mugen87/yuka 的 Think.arbitrate 评估思路（MIT），按个性偏好与可取性打分。旅行与到站动作由房间现有的 Three.js 角色执行。https://github.com/Mugen87/yuka/blob/master/src/goal/Think.js
